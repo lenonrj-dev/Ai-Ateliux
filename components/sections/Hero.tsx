@@ -26,32 +26,32 @@ const tags = [
 
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden px-4 pb-24 pt-28 sm:pt-32">
+    <section className="relative isolate overflow-hidden px-4 pb-20 pt-24 sm:pb-24 sm:pt-28">
       <div className="pointer-events-none absolute inset-0 bg-[url('/hero_ai_glow_bg_blue.svg')] bg-cover bg-top bg-no-repeat opacity-80" />
 
-      <div className="relative z-10 mt-40 mx-auto flex max-w-6xl flex-col items-center text-center">
+      <div className="relative z-10 mx-auto mt-28 flex max-w-5xl flex-col items-center text-center sm:mt-36 lg:mt-40">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="flex flex-col items-center gap-6"
         >
-          <h1 className="text-balance text-6xl font-black leading-[1] tracking-tight text-white sm:text-6xl md:text-7xl lg:text-9xl">
-            AI-Ateliux
+          <h1 className="text-balance text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+            Automação inteligente para Instagram com IA
           </h1>
           <Pill tone="glass" icon={<Sparkles size={16} />}>
             AI Ateliux para Instagram e Facebook
           </Pill>
 
-          <p className="max-w-2xl text-pretty text-sm text-white/60 sm:text-base">
+          <p className="max-w-2xl text-pretty text-sm text-white/70 sm:text-base">
             Dispare postagens, comentários e mensagens no Direct em massa, com um agente de IA que conversa com leads, otimiza campanhas e mantém seu perfil ativo 24/7.
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <Button variant="primary" size="lg">
-              Começar
+          <div className="flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row">
+            <Button variant="primary" size="lg" className="w-full sm:w-auto">
+              Criar minha conta na AI Ateliux
             </Button>
-            <Button variant="ghost" size="lg">
+            <Button variant="ghost" size="lg" className="w-full sm:w-auto">
               Ver dashboard em ação
             </Button>
           </div>
@@ -61,12 +61,12 @@ export function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="mt-12 grid w-100 max-w-2xl grid-cols-2 gap-3 sm:grid-cols-3"
+          className="mt-10 grid w-full max-w-2xl grid-cols-2 gap-3 sm:mt-12 sm:grid-cols-3"
         >
           {tags.map((tag) => (
             <Badge
               key={tag.label}
-              className="flex items-center justify-center gap-2 bg-[#0b1220]/80 px-1 text-sm font-semibold text-white shadow-soft hover:border-white/20 hover:bg-white/10"
+              className="flex items-center justify-center gap-2 bg-[#0b1220]/80 px-2 py-2 text-sm font-semibold text-white shadow-soft hover:border-white/20 hover:bg-white/10"
               icon={tag.icon}
             >
               {tag.label}
