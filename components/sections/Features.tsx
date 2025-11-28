@@ -103,7 +103,7 @@ function PredictiveCard() {
 function WorkflowCard() {
   return (
     <Card className="flex min-h-[420px] flex-col justify-between p-6">
-      <div className="h-[260px] flex flex-col gap-5">
+      <div className="h-[24 0px] flex flex-col gap-5">
         {["Novo seguidor", "Responder DM", "Publicar post"].map((action, idx) => (
           <div
             key={action}

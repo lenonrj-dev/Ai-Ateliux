@@ -7,26 +7,26 @@ import { cn } from "../../lib/utils";
 
 export function GlobeHero() {
   return (
-    <section className="relative overflow-hidden bg-black pb-16 pt-20 text-white sm:pb-20 sm:pt-24">
-      <div className="relative mx-auto flex min-h-[80vh] w-full max-w-6xl flex-col items-center px-4 sm:min-h-[90vh]">
-        <div className="mt-10 flex flex-col items-center gap-5 text-center sm:mt-12 sm:gap-6">
-          <h2 className="text-balance text-3xl font-bold leading-tight sm:text-4xl md:text-5xl">
+    <section className="relative overflow-hidden bg-black pb-20 pt-24 text-white sm:pt-28">
+      <div className="relative mx-auto flex min-h-[90vh] max-w-6xl flex-col items-center px-4">
+        <div className="mt-14 flex flex-col items-center gap-6 text-center sm:mt-10">
+          <h2 className="text-balance text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
             Seu copiloto de automação para Instagram em um só painel
           </h2>
-          <p className="max-w-2xl text-sm text-[#c6d7ff] sm:text-base md:text-lg">
+          <p className="max-w-2xl text-base text-[#c6d7ff] sm:text-lg">
             Conecte sua conta Meta, programe postagens, comentários e DMs em massa e deixe a IA da Ateliux responder leads, nutrir contatos e manter o perfil ativo 24/7.
           </p>
-          <div className="flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row">
+          <div className="flex flex-wrap items-center justify-center gap-3">
             <button
               type="button"
-              className="w-full rounded-lg bg-[#4da3ff] px-5 py-3 text-sm font-semibold text-white shadow-[0_15px_45px_rgba(77,163,255,0.45)] transition hover:translate-y-[-1px] hover:shadow-[0_18px_55px_rgba(100,180,255,0.55)] focus:outline-none focus:ring-2 focus:ring-[#73bcff] sm:w-auto"
+              className="rounded-lg bg-[#4da3ff] px-5 py-3 text-sm font-semibold text-white shadow-[0_15px_45px_rgba(77,163,255,0.45)] transition hover:translate-y-[-1px] hover:shadow-[0_18px_55px_rgba(100,180,255,0.55)] focus:outline-none focus:ring-2 focus:ring-[#73bcff]"
             >
               Criar minha conta na AI Ateliux
             </button>
             <button
               type="button"
               aria-label="Ver dashboard em ação"
-              className="group inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(0,0,0,0.4)] transition hover:border-[#4da3ff]/70 hover:bg-[#122039] sm:w-auto"
+              className="group inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(0,0,0,0.4)] transition hover:border-[#4da3ff]/70 hover:bg-[#122039]"
             >
               <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition group-hover:border-[#4da3ff]/70 group-hover:bg-[#1b3259]">
                 <Play size={16} />
@@ -52,8 +52,8 @@ function Diagram() {
 
   return (
     <>
-      <div className="relative mt-10 hidden w-full max-w-6xl rounded-[28px] bg-transparent md:block">
-        <div className="relative h-[520px] lg:h-[560px]">
+      <div className="relative mt-14 hidden w-full max-w-6xl rounded-[28px] bg-transparent md:block">
+        <div className="relative h-[560px]">
           <svg
             className="absolute inset-0"
             viewBox="0 0 1200 640"
@@ -94,14 +94,14 @@ function Diagram() {
             />
           </svg>
 
-          <div className="absolute left-1/2 top-72 -translate-x-1/2 -translate-y-1/2 lg:top-78">
+          <div className="absolute left-1/2 top-78 -translate-x-1/2 -translate-y-1/2">
             <Image
               src="/globe.png"
               alt="Interface luminosa da AI Ateliux centralizando automações do Instagram"
-              width={720}
-              height={720}
+              width={860}
+              height={860}
               priority
-              className="relative w-[65vw] max-w-[620px] drop-shadow-[0_20px_60px_rgba(80,168,255,0.6)]"
+              className="relative drop-shadow-[0_20px_60px_rgba(80,168,255,0.6)]"
             />
           </div>
 
@@ -123,13 +123,13 @@ function Diagram() {
 type CardPosition = "top-left" | "bottom-left" | "top-right" | "bottom-right" | "stacked";
 
 function FeatureCard({ title, position }: { title: string; position: CardPosition }) {
-  const base = "absolute w-[240px] rounded-[18px] md:w-[250px]";
+  const base = "absolute w-[250px] rounded-[18px]";
 
   const placement = {
-    "top-left": "left-10 top-2",
-    "bottom-left": "left-12 bottom-2",
-    "top-right": "right-12 top-8",
-    "bottom-right": "right-10 bottom-4",
+    "top-left": "left-20 top-2",
+    "bottom-left": "left-15 bottom-2",
+    "top-right": "right-15 top-10",
+    "bottom-right": "right-8 bottom-4",
     stacked: "static w-full",
   }[position];
 

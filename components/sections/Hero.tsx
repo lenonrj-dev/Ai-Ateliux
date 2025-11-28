@@ -26,33 +26,34 @@ const tags = [
 
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden px-4 pb-20 pt-24 sm:pb-24 sm:pt-28">
+    <section className="relative isolate overflow-hidden bg-transparent px-4 pb-24 pt-28 sm:pt-32">
       <div className="pointer-events-none absolute inset-0 bg-[url('/hero_ai_glow_bg_blue.svg')] bg-cover bg-top bg-no-repeat opacity-80" />
 
-      <div className="relative z-10 mx-auto mt-28 flex max-w-5xl flex-col items-center text-center sm:mt-36 lg:mt-40">
+      <div className="relative mt-40 z-10 mx-auto flex max-w-6xl flex-col items-center text-center">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="flex flex-col items-center gap-6"
         >
-          <h1 className="text-balance text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
-            Automação inteligente para Instagram com IA
+
+          <h1 className="text-balance text-6xl font-black leading-[1] tracking-tight text-white sm:text-6xl md:text-7xl lg:text-9xl">
+            AI-ATELIUX
           </h1>
           <Pill tone="glass" icon={<Sparkles size={16} />}>
-            AI Ateliux para Instagram e Facebook
+            Explore Automações Por IA
           </Pill>
 
-          <p className="max-w-2xl text-pretty text-sm text-white/70 sm:text-base">
-            Dispare postagens, comentários e mensagens no Direct em massa, com um agente de IA que conversa com leads, otimiza campanhas e mantém seu perfil ativo 24/7.
+          <p className="max-w-2xl text-pretty text-sm text-white/60 sm:text-base">
+            Dispare postagens, comentários e mensagens no Direct em massa, com um agente de Ia que conversa com leads, otimiza campanhas e mantém seu perfil ativo 24/7.
           </p>
 
-          <div className="flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row">
-            <Button variant="primary" size="lg" className="w-full sm:w-auto">
-              Criar minha conta na AI Ateliux
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <Button variant="primary" size="lg">
+              Começar
             </Button>
-            <Button variant="ghost" size="lg" className="w-full sm:w-auto">
-              Ver dashboard em ação
+            <Button variant="ghost" size="lg">
+              Ver Dashboard em Ação
             </Button>
           </div>
         </motion.div>
@@ -61,12 +62,12 @@ export function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="mt-10 grid w-full max-w-2xl grid-cols-2 gap-3 sm:mt-12 sm:grid-cols-3"
+          className="mt-12 grid w-100 max-w-2xl grid-cols-2 gap-3 sm:grid-cols-3"
         >
           {tags.map((tag) => (
             <Badge
               key={tag.label}
-              className="flex items-center justify-center gap-2 bg-[#0b1220]/80 px-2 py-2 text-sm font-semibold text-white shadow-soft hover:border-white/20 hover:bg-white/10"
+              className="flex items-center justify-center gap-2 bg-[#0b1220]/80 px-1 text-sm font-semibold text-white shadow-soft hover:border-white/20 hover:bg-white/10"
               icon={tag.icon}
             >
               {tag.label}
@@ -95,7 +96,7 @@ function FloatingCards() {
 
       <FloatingCard className="left-90 bottom-57 hidden w-52 flex-col gap-4 sm:flex">
         <div className="flex items-center justify-between text-sm text-white/70">
-          <span>Próximo envio</span>
+          <span>Próximo Envio</span>
           <div className="flex items-center gap-2 rounded-full bg-white/5 px-2 py-1 text-[11px]">
             <span className="h-2 w-2 rounded-full bg-primary" />
             <span>IA</span>
@@ -112,22 +113,22 @@ function FloatingCards() {
       <FloatingCard className="right-68 top-60 hidden w-52 flex-col gap-3 md:flex">
         <p className="text-xs uppercase text-white/50">Ações</p>
         <div className="flex flex-col gap-2 text-sm text-white/80">
-          <ControlChip label="Agendar post" />
+          <ControlChip label="Agendar Post" />
           <ControlChip label="Responder DMs" active />
-          <ControlChip label="Interagir com seguidores" />
+          <ControlChip label="UInteragir com Seguidores" />
         </div>
       </FloatingCard>
 
       <FloatingCard className="right-74 bottom-59 hidden w-56 flex-col gap-4 md:flex">
         <div className="flex items-center justify-between text-xs text-white/70">
-          <span>Acesso seguro</span>
+          <span>Acesso Seguro</span>
           <span className="rounded-full bg-white/10 px-3 py-1 text-[11px]">
             Conta Meta
           </span>
         </div>
-        <Input placeholder="Email corporativo..." />
+        <Input placeholder="Email..." />
         <Button size="sm" variant="secondary" className="w-full text-xs">
-          Entrar na minha conta
+          Entrar na Meta
         </Button>
       </FloatingCard>
     </>
