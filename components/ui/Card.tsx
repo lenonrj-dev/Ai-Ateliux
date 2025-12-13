@@ -16,7 +16,7 @@ export function Card({
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-2xl border border-white/10 text-gray-100 shadow-soft",
+        "relative overflow-hidden rounded-2xl border border-white/10 text-gray-100 shadow-soft transition duration-300",
         dimmed ? "bg-[#080c15]/80" : null,
         "backdrop-blur-sm",
         className,

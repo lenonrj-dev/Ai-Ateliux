@@ -1,9 +1,11 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import { Dribbble, Figma, Framer, Globe2, Zap } from "lucide-react";
 import { Badge } from "../ui/Badge";
 import { Card } from "../ui/Card";
+import { hoverLift, itemFadeUp, staggerContainer } from "../../lib/motion";
 
 const integrations = [
   { name: "Meta / Instagram", icon: <Figma size={18} />, action: "Conectar conta" },
@@ -14,42 +16,42 @@ const integrations = [
 
 export function Integrations() {
   return (
-    <section id="integrations" className="relative overflow-hidden bg-black px-4 pb-20 pt-8">
+    <section id="integrations" className="relative overflow-hidden bg-black px-4 pb-20 pt-12 sm:pt-16">
       <div className="absolute inset-0 flex items-center justify-center text-[13vw] font-black uppercase tracking-[0.2em] text-white/5 pointer-events-none select-none">
         INTEGRAÇÕES
       </div>
-      <div className="relative mx-auto flex max-w-6xl flex-col gap-10">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <motion.div
+        variants={staggerContainer}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true, margin: "-80px" }}
+        className="relative mx-auto flex max-w-6xl flex-col gap-10"
+      >
+        <motion.div variants={itemFadeUp} className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <Badge variant="solid" icon={<Globe2 size={14} />} className="p-5 text-white">
             Integrações
           </Badge>
           <div className="max-w-xl text-sm text-white/60">
             Conecte Instagram, Facebook e fluxos externos para acionar automações e responder leads sem sair da AI Ateliux.
           </div>
-        </div>
+        </motion.div>
 
-        <div className="relative flex flex-col items-center gap-10">
-        <div className="relative flex flex-col items-center">
-            <div className="rounded-full ml-26 border border-white/10 bg-white/10 px-4 py-2 text-sm font-semibold text-white shadow-soft">
+        <motion.div variants={itemFadeUp} className="relative flex flex-col items-center gap-10">
+          <div className="relative flex flex-col items-center">
+            <div className="rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm font-semibold text-white shadow-soft">
               Conecte e automatize
             </div>
           </div>
 
           <div className="grid w-full gap-6 md:grid-cols-2 xl:grid-cols-4">
             {integrations.map((integration, idx) => (
-              <motion.div
-                key={integration.name}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: idx * 0.05, duration: 0.4 }}
-              >
+              <motion.div key={integration.name} variants={itemFadeUp} transition={{ delay: idx * 0.05 }} whileHover={hoverLift}>
                 <IntegrationCard {...integration} />
               </motion.div>
             ))}
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }
@@ -64,7 +66,7 @@ function IntegrationCard({
   action: string;
 }) {
   return (
-    <Card className="flex h-full flex-col gap-4 rounded-2xl border border-white/10 bg-[#0b1220]/70 p-5 text-white hover:border-white/20 hover:bg-white/5 transition">
+    <Card className="flex h-full flex-col gap-4 rounded-2xl border border-white/10 bg-[#0b1220]/70 p-5 text-white transition hover:border-white/20 hover:bg-white/5">
       <div className="flex items-center gap-3 text-sm font-semibold">
         <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-white">
           {icon}

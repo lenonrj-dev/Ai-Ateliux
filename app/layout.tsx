@@ -3,6 +3,7 @@ import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "../components/layout/Navbar";
 import { Footer } from "../components/layout/Footer";
+import { PageTransition } from "../components/layout/PageTransition";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -28,7 +29,9 @@ export default function RootLayout({
       >
         <div className="relative min-h-screen overflow-hidden">
           <Navbar />
-          <main>{children}</main>
+          <PageTransition>
+            <main className="pb-10 pt-4 sm:pt-6 lg:pt-8">{children}</main>
+          </PageTransition>
           <Footer />
         </div>
       </body>

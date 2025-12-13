@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 import { Badge } from "../ui/Badge";
 import { Card } from "../ui/Card";
+import { hoverLift, itemFadeUp, staggerContainer } from "../../lib/motion";
 
 type Testimonial = {
   name: string;
@@ -21,7 +22,7 @@ const testimonials: Testimonial[] = [
     name: "Lucas Andrade",
     role: "Social media",
     quote:
-      "Configuro fluxos do tipo “se seguir, envia DM” e a AI Ateliux já nutre o lead. Meu engajamento subiu sem aumentar equipe.",
+      'Configuro fluxos do tipo "se seguir, envia DM" e a AI Ateliux já nutre o lead. Meu engajamento subiu sem aumentar equipe.',
   },
   {
     name: "Patrícia Nogueira",
@@ -49,22 +50,23 @@ const testimonials: Testimonial[] = [
   },
 ];
 
-const cardVariants = {
-  initial: { opacity: 0, y: 16 },
-  animate: { opacity: 1, y: 0 },
-};
-
 export function Testimonials() {
   return (
-    <section id="testimonials" className="relative overflow-hidden bg-black px-4 py-20">
+    <section id="testimonials" className="relative overflow-hidden bg-black px-4 py-20 sm:py-24">
       <div className="pointer-events-none absolute -left-24 top-0 h-64 w-64 rounded-full bg-primary/25 blur-[120px]" />
       <div className="pointer-events-none absolute right-0 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-accent/20 blur-[120px]" />
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center text-[13vw] font-black uppercase tracking-[0.24em] text-white/5 select-none">
         CLIENTES
       </div>
 
-      <div className="relative mx-auto flex max-w-6xl flex-col gap-10">
-        <div className="flex flex-col items-center gap-4 text-center">
+      <motion.div
+        variants={staggerContainer}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true, margin: "-80px" }}
+        className="relative mx-auto flex max-w-6xl flex-col gap-10"
+      >
+        <motion.div variants={itemFadeUp} className="flex flex-col items-center gap-4 text-center">
           <div className="flex items-center gap-3 text-white/60">
             <span className="h-px w-12 bg-white/20" />
             <Badge variant="solid" icon={<Quote size={16} />}>
@@ -78,23 +80,21 @@ export function Testimonials() {
           <p className="max-w-2xl text-sm text-white/60 sm:text-base">
             Profissionais e equipes mantêm o Instagram ativo, respondem leads no Direct e ganham horas por semana com automação inteligente.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {testimonials.map((testimonial, idx) => (
             <motion.div
               key={testimonial.name}
-              variants={cardVariants}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: idx * 0.05, duration: 0.4 }}
+              variants={itemFadeUp}
+              transition={{ delay: idx * 0.05 }}
+              whileHover={hoverLift}
             >
               <TestimonialCard {...testimonial} />
             </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
@@ -103,7 +103,7 @@ function TestimonialCard({ name, role, quote }: Testimonial) {
   return (
     <Card
       gradient={false}
-      className="group flex h-full flex-col gap-4 overflow-hidden border-white/10 bg-gradient-to-b from-[#120b1d]/75 via-[#0b0d15]/90 to-[#06070e] p-5 transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:shadow-glow"
+      className="group relative flex h-full flex-col gap-4 overflow-hidden border-white/10 bg-gradient-to-b from-[#120b1d]/75 via-[#0b0d15]/90 to-[#06070e] p-5 transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:shadow-glow"
     >
       <div className="pointer-events-none absolute inset-x-4 bottom-0 h-28 rounded-full bg-gradient-to-t from-primary/25 via-accent/15 to-transparent blur-3xl" />
 

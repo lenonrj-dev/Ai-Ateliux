@@ -27,11 +27,30 @@
 
 body {
   margin: 0;
-  background: #030916;
+  background: radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.12), transparent 35%),
+    radial-gradient(circle at 80% 0%, rgba(56, 189, 248, 0.12), transparent 30%),
+    #030916;
   color: var(--foreground);
   font-family: var(--font-space-grotesk), "Inter", "system-ui", sans-serif;
   min-height: 100vh;
   text-rendering: optimizeLegibility;
+  position: relative;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px
+    ),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 140px 140px;
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: -1;
 }
 
 a {
@@ -61,4 +80,39 @@ a {
   background-size: 60px 60px;
   opacity: 0.3;
   pointer-events: none;
+}
+
+.focus-outline {
+  outline: 2px solid rgba(59, 130, 246, 0.5);
+  outline-offset: 2px;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pulseGlow {
+  0% {
+    opacity: 0.4;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+  100% {
+    opacity: 0.4;
+    transform: scale(0.96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

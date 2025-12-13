@@ -4,60 +4,44 @@ import { motion } from "framer-motion";
 import { BarChart3, Cpu, Workflow } from "lucide-react";
 import { Badge } from "../ui/Badge";
 import { Card } from "../ui/Card";
-
-const cardVariants = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-};
+import { hoverLift, itemFadeUp, staggerContainer } from "../../lib/motion";
 
 export function Features() {
   return (
-    <section id="features" className="relative overflow-hidden bg-black px-4 py-20">
+    <section id="features" className="relative overflow-hidden bg-black px-4 py-20 sm:py-24">
       <div className="absolute inset-0 flex items-center justify-center text-[13vw] font-black uppercase tracking-[0.3em] text-white/5 pointer-events-none select-none">
         RECURSOS
       </div>
-      <div className="relative mx-auto flex max-w-6xl flex-col gap-10">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <motion.div
+        variants={staggerContainer}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true, margin: "-80px" }}
+        className="relative mx-auto flex max-w-6xl flex-col gap-10"
+      >
+        <motion.div variants={itemFadeUp} className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <Badge variant="solid" icon={<Cpu size={20} />} className="p-5 text-white">
             Recursos da AI Ateliux
           </Badge>
           <div className="max-w-xl text-sm text-white/60">
             Automação de Instagram em massa com IA: agende postagens, responda DMs e monitore tudo em um painel.
           </div>
-        </div>
+        </motion.div>
 
         <div className="grid gap-6 md:grid-cols-3">
-          <motion.div
-            variants={cardVariants}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5 }}
-          >
+          <motion.div variants={itemFadeUp} whileHover={hoverLift}>
             <PredictiveCard />
           </motion.div>
 
-          <motion.div
-            variants={cardVariants}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay: 0.1, duration: 0.5 }}
-          >
+          <motion.div variants={itemFadeUp} whileHover={hoverLift} transition={{ delay: 0.05 }}>
             <WorkflowCard />
           </motion.div>
 
-          <motion.div
-            variants={cardVariants}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-          >
+          <motion.div variants={itemFadeUp} whileHover={hoverLift} transition={{ delay: 0.1 }}>
             <RealtimeCard />
           </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
@@ -72,9 +56,7 @@ function PredictiveCard() {
         <div className="relative flex h-full flex-col justify-between p-5">
           <div className="flex items-center justify-between text-xs text-white/75">
             <span className="rounded-full bg-white/12 px-3 py-1">Calendário ativo</span>
-            <span className="rounded-full border border-white/15 px-3 py-1">
-              Sugestão da IA
-            </span>
+            <span className="rounded-full border border-white/15 px-3 py-1">Sugestão da IA</span>
           </div>
 
           <div className="relative h-full">
@@ -103,7 +85,7 @@ function PredictiveCard() {
 function WorkflowCard() {
   return (
     <Card className="flex min-h-[420px] flex-col justify-between p-6">
-      <div className="h-[24 0px] flex flex-col gap-5">
+      <div className="h-[240px] flex flex-col gap-5">
         {["Novo seguidor", "Responder DM", "Publicar post"].map((action, idx) => (
           <div
             key={action}
@@ -113,7 +95,7 @@ function WorkflowCard() {
             <Workflow size={16} className="text-accent" aria-hidden />
             {idx < 2 && (
               <span className="pointer-events-none absolute left-1/2 top-full -translate-x-1/2 text-white/30">
-                ·
+                ¶ú
               </span>
             )}
           </div>
@@ -123,7 +105,7 @@ function WorkflowCard() {
       <div className="relative mt-4 flex flex-col gap-3 rounded-xl bg-black/50 p-5 backdrop-blur-md">
         <h3 className="text-lg font-semibold text-white">Fluxos automatizados</h3>
         <p className="text-sm text-white/60">
-          Crie gatilhos do tipo “se acontecer X, faça Y” para campanhas, respostas e funis no Instagram.
+          Crie gatilhos do tipo &quot;se acontecer X, faça Y&quot; para campanhas, respostas e funis no Instagram.
         </p>
       </div>
     </Card>
@@ -155,9 +137,7 @@ function RealtimeCard() {
       <div className="relative mt-4 flex flex-col gap-3 rounded-xl bg-black/50 p-5 backdrop-blur-md">
         <div className="flex items-center justify-between text-xs text-white/70">
           <span className="rounded-full bg-white/10 px-3 py-1">Últimas 24h</span>
-          <span className="rounded-full border border-white/10 px-3 py-1 text-white/80">
-            IA ativa
-          </span>
+          <span className="rounded-full border border-white/10 px-3 py-1 text-white/80">IA ativa</span>
         </div>
         <h3 className="text-lg font-semibold text-white">Gestão de performance</h3>
         <p className="text-sm text-white/60">

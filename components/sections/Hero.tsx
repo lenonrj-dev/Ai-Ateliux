@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import {
   Bolt,
@@ -14,6 +15,7 @@ import { Badge } from "../ui/Badge";
 import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
 import { Pill } from "../ui/Pill";
+import { hoverLift, itemFadeUp, staggerContainer } from "../../lib/motion";
 
 const tags = [
   { label: "Postagens", icon: <Component size={14} /> },
@@ -24,54 +26,87 @@ const tags = [
   { label: "Relatórios", icon: <Sparkles size={14} /> },
 ];
 
+const heroStats = [
+  { label: "Agendamentos ativos", value: "128", accent: "IA priorizando horários" },
+  { label: "Conversas no Direct", value: "12.4k", accent: "Respostas com IA" },
+  { label: "Integrações", value: "Meta / WhatsApp", accent: "Conta segura" },
+];
+
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden bg-transparent px-4 pb-24 pt-28 sm:pt-32">
+    <section className="relative isolate overflow-hidden bg-transparent px-4 pb-28 pt-32 sm:pt-36">
       <div className="pointer-events-none absolute inset-0 bg-[url('/hero_ai_glow_bg_blue.svg')] bg-cover bg-top bg-no-repeat opacity-80" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_30%,rgba(59,130,246,0.12),transparent_40%),radial-gradient(circle_at_80%_10%,rgba(56,189,248,0.14),transparent_32%)]" />
+      <div className="pointer-events-none absolute -left-20 bottom-0 h-72 w-72 rounded-full bg-primary/20 blur-[120px]" />
+      <div className="pointer-events-none absolute -right-14 top-10 h-64 w-64 rounded-full bg-accent/25 blur-[120px]" />
 
-      <div className="relative mt-40 z-10 mx-auto flex max-w-6xl flex-col items-center text-center">
+      <div className="relative z-10 mx-auto flex max-w-6xl flex-col gap-12 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, margin: "-80px" }}
           className="flex flex-col items-center gap-6"
         >
+          <motion.div variants={itemFadeUp}>
+            <Pill tone="glass" icon={<Sparkles size={16} />}>
+              Explore automações por IA
+            </Pill>
+          </motion.div>
 
-          <h1 className="text-balance text-6xl font-black leading-[1] tracking-tight text-white sm:text-6xl md:text-7xl lg:text-9xl">
+          <motion.h1
+            variants={itemFadeUp}
+            className="text-balance text-5xl font-black leading-[1] tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl"
+          >
             AI-ATELIUX
-          </h1>
-          <Pill tone="glass" icon={<Sparkles size={16} />}>
-            Explore Automações Por IA
-          </Pill>
+          </motion.h1>
 
-          <p className="max-w-2xl text-pretty text-sm text-white/60 sm:text-base">
-            Dispare postagens, comentários e mensagens no Direct em massa, com um agente de Ia que conversa com leads, otimiza campanhas e mantém seu perfil ativo 24/7.
-          </p>
+          <motion.p variants={itemFadeUp} className="max-w-3xl text-pretty text-base text-white/70 sm:text-lg">
+            Dispare postagens, comentários e mensagens no Direct em massa com um agente de IA que conversa com leads, otimiza campanhas e mantém seu perfil ativo 24/7.
+          </motion.p>
 
-          <div className="flex flex-wrap items-center justify-center gap-3">
+          <motion.div variants={itemFadeUp} className="flex flex-wrap items-center justify-center gap-3">
             <Button variant="primary" size="lg">
               Começar
             </Button>
-            <Button variant="ghost" size="lg">
-              Ver Dashboard em Ação
+            <Button variant="ghost" size="lg" className="border-white/15">
+              Ver dashboard em ação
             </Button>
-          </div>
+          </motion.div>
+
+          <motion.div
+            variants={itemFadeUp}
+            className="grid w-full max-w-3xl grid-cols-2 gap-3 sm:grid-cols-3"
+          >
+            {tags.map((tag) => (
+              <Badge
+                key={tag.label}
+                className="flex items-center justify-center gap-2 bg-[#0b1220]/80 px-1 text-sm font-semibold text-white shadow-soft hover:border-white/20 hover:bg-white/10"
+                icon={tag.icon}
+              >
+                {tag.label}
+              </Badge>
+            ))}
+          </motion.div>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          className="mt-12 grid w-100 max-w-2xl grid-cols-2 gap-3 sm:grid-cols-3"
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto grid w-full max-w-4xl grid-cols-1 gap-4 sm:grid-cols-3"
         >
-          {tags.map((tag) => (
-            <Badge
-              key={tag.label}
-              className="flex items-center justify-center gap-2 bg-[#0b1220]/80 px-1 text-sm font-semibold text-white shadow-soft hover:border-white/20 hover:bg-white/10"
-              icon={tag.icon}
+          {heroStats.map((stat) => (
+            <motion.div
+              key={stat.label}
+              whileHover={hoverLift}
+              className="rounded-2xl border border-white/10 bg-white/5 p-4 text-left text-white shadow-soft backdrop-blur"
             >
-              {tag.label}
-            </Badge>
+              <p className="text-xs uppercase text-white/50">{stat.label}</p>
+              <p className="mt-2 text-2xl font-bold">{stat.value}</p>
+              <p className="text-xs text-white/60">{stat.accent}</p>
+            </motion.div>
           ))}
         </motion.div>
       </div>
@@ -84,7 +119,7 @@ export function Hero() {
 function FloatingCards() {
   return (
     <>
-      <FloatingCard className="left-70 top-60 hidden w-48 flex-col gap-3 lg:flex">
+      <FloatingCard className="left-4 top-48 hidden w-56 flex-col gap-3 lg:left-10 xl:flex">
         <p className="text-xs uppercase text-white/50">Formatos</p>
         <div className="flex flex-col gap-2 text-sm text-white/80">
           <ControlChip label="Feed" active />
@@ -94,9 +129,9 @@ function FloatingCards() {
         </div>
       </FloatingCard>
 
-      <FloatingCard className="left-90 bottom-57 hidden w-52 flex-col gap-4 sm:flex">
+      <FloatingCard className="left-6 bottom-44 hidden w-64 flex-col gap-4 sm:flex lg:left-12">
         <div className="flex items-center justify-between text-sm text-white/70">
-          <span>Próximo Envio</span>
+          <span>Próximo envio</span>
           <div className="flex items-center gap-2 rounded-full bg-white/5 px-2 py-1 text-[11px]">
             <span className="h-2 w-2 rounded-full bg-primary" />
             <span>IA</span>
@@ -110,21 +145,19 @@ function FloatingCards() {
         </Button>
       </FloatingCard>
 
-      <FloatingCard className="right-68 top-60 hidden w-52 flex-col gap-3 md:flex">
+      <FloatingCard className="right-4 top-48 hidden w-60 flex-col gap-3 lg:right-10 lg:flex">
         <p className="text-xs uppercase text-white/50">Ações</p>
         <div className="flex flex-col gap-2 text-sm text-white/80">
           <ControlChip label="Agendar Post" />
           <ControlChip label="Responder DMs" active />
-          <ControlChip label="UInteragir com Seguidores" />
+          <ControlChip label="Interagir com Seguidores" />
         </div>
       </FloatingCard>
 
-      <FloatingCard className="right-74 bottom-59 hidden w-56 flex-col gap-4 md:flex">
+      <FloatingCard className="right-6 bottom-48 hidden w-64 flex-col gap-4 md:flex lg:right-12">
         <div className="flex items-center justify-between text-xs text-white/70">
           <span>Acesso Seguro</span>
-          <span className="rounded-full bg-white/10 px-3 py-1 text-[11px]">
-            Conta Meta
-          </span>
+          <span className="rounded-full bg-white/10 px-3 py-1 text-[11px]">Conta Meta</span>
         </div>
         <Input placeholder="Email..." />
         <Button size="sm" variant="secondary" className="w-full text-xs">
@@ -159,9 +192,7 @@ function ControlChip({ label, active }: { label: string; active?: boolean }) {
   return (
     <div
       className={`flex items-center justify-between rounded-xl border px-3 py-2 ${
-        active
-          ? "border-white/20 bg-white/20 text-white"
-          : "border-white/10 bg-white/5 text-white/70"
+        active ? "border-white/20 bg-white/20 text-white" : "border-white/10 bg-white/5 text-white/70"
       }`}
     >
       <span>{label}</span>

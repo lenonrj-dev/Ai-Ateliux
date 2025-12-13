@@ -1,5 +1,9 @@
+"use client";
+
 import React from "react";
+import { m, useReducedMotion } from "framer-motion";
 import { cn } from "../../lib/utils";
+import { hoverLift, tapPress } from "../../lib/motion";
 
 type ButtonVariant = "primary" | "secondary" | "ghost";
 type ButtonSize = "sm" | "md" | "lg";
@@ -8,6 +12,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   icon?: React.ReactNode;
+  loading?: boolean;
 }
 
 const variantMap: Record<ButtonVariant, string> = {
@@ -30,21 +35,35 @@ export function Button({
   variant = "primary",
   size = "md",
   icon,
+  loading = false,
   children,
   ...props
 }: ButtonProps) {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
-    <button
+    <m.button
       className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-0",
+        "inline-flex items-center justify-center gap-2 rounded-full font-semibold transition duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-60",
         variantMap[variant],
         sizeMap[size],
         className,
       )}
+      whileHover={prefersReducedMotion ? undefined : hoverLift}
+      whileTap={prefersReducedMotion ? undefined : tapPress}
+      aria-busy={loading}
+      disabled={props.disabled || loading}
       {...props}
     >
-      {icon && <span className="text-white/80">{icon}</span>}
-      {children}
-    </button>
+      {loading ? (
+        <span className="relative flex h-4 w-4 items-center justify-center">
+          <span className="absolute h-4 w-4 rounded-full border border-white/20" />
+          <span className="absolute h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+        </span>
+      ) : (
+        icon && <span className="text-white/80">{icon}</span>
+      )}
+      <span className={cn(loading ? "opacity-80" : null)}>{children}</span>
+    </m.button>
   );
 }

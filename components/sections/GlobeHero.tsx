@@ -4,37 +4,45 @@ import Image from "next/image";
 import { Play } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "../../lib/utils";
+import { Button } from "../ui/Button";
+import { hoverLift, itemFadeUp, staggerContainer } from "../../lib/motion";
 
 export function GlobeHero() {
   return (
     <section className="relative overflow-hidden bg-black pb-20 pt-24 text-white sm:pt-28">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_0%_10%,rgba(59,130,246,0.14),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(56,189,248,0.14),transparent_32%)]" />
       <div className="relative mx-auto flex min-h-[90vh] max-w-6xl flex-col items-center px-4">
-        <div className="mt-14 flex flex-col items-center gap-6 text-center sm:mt-10">
-          <h2 className="text-balance text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
+        <motion.div
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, margin: "-60px" }}
+          className="mt-14 flex flex-col items-center gap-6 text-center sm:mt-10"
+        >
+          <motion.h2
+            variants={itemFadeUp}
+            className="text-balance text-4xl font-bold leading-tight sm:text-5xl md:text-6xl"
+          >
             Seu copiloto de automação para Instagram em um só painel
-          </h2>
-          <p className="max-w-2xl text-base text-[#c6d7ff] sm:text-lg">
+          </motion.h2>
+          <motion.p variants={itemFadeUp} className="max-w-2xl text-base text-[#c6d7ff] sm:text-lg">
             Conecte sua conta Meta, programe postagens, comentários e DMs em massa e deixe a IA da Ateliux responder leads, nutrir contatos e manter o perfil ativo 24/7.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <button
-              type="button"
-              className="rounded-lg bg-[#4da3ff] px-5 py-3 text-sm font-semibold text-white shadow-[0_15px_45px_rgba(77,163,255,0.45)] transition hover:translate-y-[-1px] hover:shadow-[0_18px_55px_rgba(100,180,255,0.55)] focus:outline-none focus:ring-2 focus:ring-[#73bcff]"
-            >
-              Criar minha conta na AI Ateliux
-            </button>
-            <button
-              type="button"
+          </motion.p>
+          <motion.div variants={itemFadeUp} className="flex flex-wrap items-center justify-center gap-3">
+            <Button size="lg">Criar minha conta na AI Ateliux</Button>
+            <Button
+              size="lg"
+              variant="secondary"
               aria-label="Ver dashboard em ação"
-              className="group inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(0,0,0,0.4)] transition hover:border-[#4da3ff]/70 hover:bg-[#122039]"
+              className="border-white/15 bg-white/5 text-white"
             >
-              <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition group-hover:border-[#4da3ff]/70 group-hover:bg-[#1b3259]">
+              <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white">
                 <Play size={16} />
               </span>
               Ver dashboard em ação
-            </button>
-          </div>
-        </div>
+            </Button>
+          </motion.div>
+        </motion.div>
 
         <Diagram />
       </div>
@@ -94,7 +102,7 @@ function Diagram() {
             />
           </svg>
 
-          <div className="absolute left-1/2 top-78 -translate-x-1/2 -translate-y-1/2">
+          <div className="absolute left-1/2 top-[19.5rem] -translate-x-1/2 -translate-y-1/2">
             <Image
               src="/globe.png"
               alt="Interface luminosa da AI Ateliux centralizando automações do Instagram"
@@ -127,8 +135,8 @@ function FeatureCard({ title, position }: { title: string; position: CardPositio
 
   const placement = {
     "top-left": "left-20 top-2",
-    "bottom-left": "left-15 bottom-2",
-    "top-right": "right-15 top-10",
+    "bottom-left": "left-16 bottom-2",
+    "top-right": "right-16 top-10",
     "bottom-right": "right-8 bottom-4",
     stacked: "static w-full",
   }[position];
@@ -139,6 +147,7 @@ function FeatureCard({ title, position }: { title: string; position: CardPositio
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-30px" }}
       transition={{ duration: 0.4 }}
+      whileHover={hoverLift}
       className={cn(
         position === "stacked" ? "relative" : base,
         placement,

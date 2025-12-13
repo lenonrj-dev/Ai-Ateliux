@@ -12,26 +12,28 @@ import {
 } from "lucide-react";
 import { Badge } from "../ui/Badge";
 import { Card } from "../ui/Card";
+import { hoverLift, itemFadeUp, staggerContainer } from "../../lib/motion";
 
 const bars = [48, 72, 60, 82, 58, 76, 68, 90, 64, 80];
 const incomeTrend = [22, 38, 30, 44, 36, 50, 42, 52, 48, 56, 60, 68, 62, 74, 78, 72];
 
-const cardVariants = {
-  initial: { opacity: 0, y: 16 },
-  animate: { opacity: 1, y: 0 },
-};
-
 export function Workflow() {
   return (
-    <section id="workflow" className="relative overflow-hidden bg-black px-4 py-20">
+    <section id="workflow" className="relative overflow-hidden bg-black px-4 py-20 sm:py-24">
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center text-[13vw] font-black uppercase tracking-[0.22em] text-white/5 select-none">
         COMO FUNCIONA
       </div>
       <div className="pointer-events-none absolute -left-20 top-10 h-64 w-64 rounded-full bg-primary/20 blur-[120px]" />
       <div className="pointer-events-none absolute right-0 bottom-0 h-72 w-72 rounded-full bg-accent/25 blur-[140px]" />
 
-      <div className="relative mx-auto flex max-w-6xl flex-col gap-10">
-        <div className="flex flex-col items-center gap-4 text-center">
+      <motion.div
+        variants={staggerContainer}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true, margin: "-80px" }}
+        className="relative mx-auto flex max-w-6xl flex-col gap-10"
+      >
+        <motion.div variants={itemFadeUp} className="flex flex-col items-center gap-4 text-center">
           <div className="flex items-center gap-3 text-white/60">
             <span className="h-px w-12 bg-white/20" />
             <Badge variant="solid" icon={<Sparkles size={16} />}>
@@ -45,52 +47,36 @@ export function Workflow() {
           <p className="max-w-2xl text-sm text-white/60 sm:text-base">
             Conecte sua conta Meta, configure automações e acompanhe postagens, comentários e DMs em um painel único.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid gap-6 lg:grid-cols-3">
           <motion.div
-            variants={cardVariants}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.4 }}
+            variants={itemFadeUp}
+            whileHover={hoverLift}
             className="lg:col-span-2"
+            transition={{ duration: 0.4 }}
           >
             <DashboardPanel />
           </motion.div>
 
-          <motion.div
-            variants={cardVariants}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay: 0.05, duration: 0.4 }}
-          >
+          <motion.div variants={itemFadeUp} whileHover={hoverLift} transition={{ delay: 0.05 }}>
             <LinkAccountsCard />
           </motion.div>
 
-          <motion.div
-            variants={cardVariants}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay: 0.1, duration: 0.4 }}
-          >
+          <motion.div variants={itemFadeUp} whileHover={hoverLift} transition={{ delay: 0.1 }}>
             <IntegrateDataCard />
           </motion.div>
 
           <motion.div
-            variants={cardVariants}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay: 0.15, duration: 0.4 }}
+            variants={itemFadeUp}
+            whileHover={hoverLift}
+            transition={{ delay: 0.15 }}
             className="lg:col-span-2"
           >
             <IncomeCard />
           </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
