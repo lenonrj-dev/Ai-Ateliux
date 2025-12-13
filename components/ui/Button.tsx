@@ -1,18 +1,19 @@
 "use client";
 
 import React from "react";
-import { m, useReducedMotion } from "framer-motion";
+import { HTMLMotionProps, m, useReducedMotion } from "framer-motion";
 import { cn } from "../../lib/utils";
 import { hoverLift, tapPress } from "../../lib/motion";
 
 type ButtonVariant = "primary" | "secondary" | "ghost";
 type ButtonSize = "sm" | "md" | "lg";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends HTMLMotionProps<"button"> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   icon?: React.ReactNode;
   loading?: boolean;
+  children?: React.ReactNode;
 }
 
 const variantMap: Record<ButtonVariant, string> = {
