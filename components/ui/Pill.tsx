@@ -17,8 +17,8 @@ export function Pill({
     tone === "primary"
       ? "bg-gradient-to-r from-primary to-accent text-white shadow-glow"
       : tone === "glass"
-        ? "bg-white/10 text-white border border-white/10 backdrop-blur-md"
-        : "bg-white/10 text-white border border-white/10";
+        ? "bg-black/60 text-white border border-white/10 backdrop-blur-md"
+        : "bg-black/60 text-white border border-white/10";
 
   return (
     <div

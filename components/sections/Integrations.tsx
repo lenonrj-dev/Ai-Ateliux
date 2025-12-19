@@ -66,7 +66,7 @@ function IntegrationCard({
   action: string;
 }) {
   return (
-    <Card className="flex h-full flex-col gap-4 rounded-2xl border border-white/10 bg-[#0b1220]/70 p-5 text-white transition hover:border-white/20 hover:bg-white/5">
+    <Card className="flex h-full flex-col gap-4 rounded-2xl border border-white/10 bg-black/60 p-5 text-white transition hover:border-white/20 hover:bg-black/70">
       <div className="flex items-center gap-3 text-sm font-semibold">
         <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-white">
           {icon}

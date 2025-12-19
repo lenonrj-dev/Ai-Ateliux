@@ -35,8 +35,8 @@ const heroStats = [
 export function Hero() {
   return (
     <section className="relative isolate overflow-hidden bg-transparent px-4 pb-28 pt-32 sm:pt-36">
-      <div className="pointer-events-none absolute inset-0 bg-[url('/hero_ai_glow_bg_blue.svg')] bg-cover bg-top bg-no-repeat opacity-80" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_30%,rgba(59,130,246,0.12),transparent_40%),radial-gradient(circle_at_80%_10%,rgba(56,189,248,0.14),transparent_32%)]" />
+      
+      <div className="pointer-events-none absolute inset-0" />
       <div className="pointer-events-none absolute -left-20 bottom-0 h-72 w-72 rounded-full bg-primary/20 blur-[120px]" />
       <div className="pointer-events-none absolute -right-14 top-10 h-64 w-64 rounded-full bg-accent/25 blur-[120px]" />
 
@@ -66,10 +66,10 @@ export function Hero() {
           </motion.p>
 
           <motion.div variants={itemFadeUp} className="flex flex-wrap items-center justify-center gap-3">
-            <Button variant="primary" size="lg">
+            <Button variant="primary" size="lg" href="/login">
               Começar
             </Button>
-            <Button variant="ghost" size="lg" className="border-white/15">
+            <Button variant="ghost" size="lg" className="border-white/15" href="/login">
               Ver dashboard em ação
             </Button>
           </motion.div>
@@ -101,7 +101,7 @@ export function Hero() {
             <motion.div
               key={stat.label}
               whileHover={hoverLift}
-              className="rounded-2xl border border-white/10 bg-white/5 p-4 text-left text-white shadow-soft backdrop-blur"
+              className="rounded-2xl border border-white/10 bg-black/60 p-4 text-left text-white shadow-soft backdrop-blur"
             >
               <p className="text-xs uppercase text-white/50">{stat.label}</p>
               <p className="mt-2 text-2xl font-bold">{stat.value}</p>
@@ -132,12 +132,12 @@ function FloatingCards() {
       <FloatingCard className="left-6 bottom-44 hidden w-64 flex-col gap-4 sm:flex lg:left-12">
         <div className="flex items-center justify-between text-sm text-white/70">
           <span>Próximo envio</span>
-          <div className="flex items-center gap-2 rounded-full bg-white/5 px-2 py-1 text-[11px]">
+          <div className="flex items-center gap-2 rounded-full bg-black/60 px-2 py-1 text-[11px]">
             <span className="h-2 w-2 rounded-full bg-primary" />
             <span>IA</span>
           </div>
         </div>
-        <div className="relative h-1.5 overflow-hidden rounded-full bg-white/5">
+        <div className="relative h-1.5 overflow-hidden rounded-full bg-black/50">
           <span className="absolute inset-y-0 left-0 w-3/4 rounded-full bg-gradient-to-r from-primary to-accent" />
         </div>
         <Button size="sm" variant="secondary" className="w-full text-xs">
@@ -181,7 +181,7 @@ function FloatingCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       whileHover={{ y: -6, scale: 1.01 }}
-      className={`backdrop-panel absolute rounded-2xl p-4 ${className}`}
+      className={`backdrop-panel absolute rounded-2xl bg-black/70 p-4 ${className}`}
     >
       {children}
     </motion.div>

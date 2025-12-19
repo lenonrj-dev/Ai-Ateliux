@@ -28,16 +28,16 @@ export function Navbar() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="fixed inset-x-0 top-4 z-50 flex justify-center px-4 sm:top-6"
     >
-      <div className="relative flex w-full max-w-6xl items-center justify-between overflow-hidden rounded-full border border-white/10 bg-white/5 px-5 py-3 shadow-[0_20px_60px_rgba(0,0,0,0.35)] backdrop-blur-md">
-        <div className="pointer-events-none absolute inset-0 opacity-50 [mask-image:linear-gradient(90deg,transparent,white,transparent)]">
-          <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-primary/10 to-transparent blur-2xl" />
+      <div className="relative flex w-full max-w-6xl items-center justify-between overflow-hidden rounded-full border border-white/10 bg-black/70 px-5 py-3 shadow-[0_20px_60px_rgba(0,0,0,0.35)] backdrop-blur-md">
+        <div className="pointer-events-none absolute inset-0 opacity-40 [mask-image:linear-gradient(90deg,transparent,white,transparent)]">
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-primary/10 to-transparent blur-2xl" />
         </div>
 
         <Link
           href="/"
           className="relative flex items-center gap-2 text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-0"
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/5 p-1 shadow-[0_10px_30px_rgba(59,130,246,0.35)]">
+          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-black/60 p-1 shadow-[0_10px_30px_rgba(59,130,246,0.35)]">
             <Image src="/logoAteliux.svg" alt="Logo Ateliux" width={36} height={36} />
           </span>
           <div className="flex flex-col leading-tight">
@@ -67,14 +67,14 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           <Link
             href="/login"
-            className="hidden rounded-full border border-[#4da3ff]/40 bg-[#0f1a2f]/70 px-5 py-2 text-sm font-semibold text-white shadow-[0_10px_35px_rgba(56,189,248,0.25)] transition hover:-translate-y-[1px] hover:border-[#6ac4ff]/60 hover:bg-[#1b2f52] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 md:inline-flex"
+            className="hidden rounded-full border border-[#4da3ff]/40 bg-black/70 px-5 py-2 text-sm font-semibold text-white shadow-[0_10px_35px_rgba(56,189,248,0.25)] transition hover:-translate-y-[1px] hover:border-[#6ac4ff]/60 hover:bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 md:inline-flex"
             aria-label="Criar minha conta"
           >
             Criar minha conta
           </Link>
           <motion.button
             onClick={() => setOpen((prev) => !prev)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/80 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 md:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-black/60 text-white/80 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 md:hidden"
             aria-label={open ? "Fechar menu" : "Abrir menu"}
             whileHover={hoverLift}
             whileTap={tapPress}
@@ -94,7 +94,7 @@ export function Navbar() {
               animate={{ opacity: 0.6 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm"
+              className="fixed inset-0 z-40 bg-black/80 backdrop-blur-sm"
               onClick={() => setOpen(false)}
             />
             <motion.div
@@ -103,7 +103,7 @@ export function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="fixed top-0 right-0 z-50 h-full w-[78vw] max-w-xs bg-[#070b12]/95 px-5 py-6 shadow-[0_20px_70px_rgba(0,0,0,0.55)] backdrop-blur-lg md:hidden"
+              className="fixed top-0 right-0 z-50 h-full w-[78vw] max-w-xs bg-black/95 px-5 py-6 shadow-[0_20px_70px_rgba(0,0,0,0.65)] backdrop-blur-lg md:hidden"
             >
               <div className="mb-6 flex items-center justify-between">
                 <Link
@@ -111,14 +111,14 @@ export function Navbar() {
                   className="flex items-center gap-2 text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
                   onClick={() => setOpen(false)}
                 >
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/5 p-1 shadow-[0_10px_30px_rgba(59,130,246,0.35)]">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-black/60 p-1 shadow-[0_10px_30px_rgba(59,130,246,0.35)]">
                     <Image src="/logoAteliux.svg" alt="Logo Ateliux" width={32} height={32} />
                   </span>
                   <span className="text-sm font-semibold tracking-tight">AI Ateliux</span>
                 </Link>
                 <button
                   onClick={() => setOpen(false)}
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-black/60 text-white/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
                   aria-label="Fechar menu"
                 >
                   <X size={18} />
@@ -142,7 +142,7 @@ export function Navbar() {
               <div className="mt-6">
                 <Link
                   href="/login"
-                  className="flex w-full items-center justify-center rounded-xl border border-[#4da3ff]/40 bg-[#1b2f52]/70 px-4 py-3 text-sm font-semibold text-white shadow-[0_10px_35px_rgba(56,189,248,0.25)] transition hover:-translate-y-[1px] hover:border-[#6ac4ff]/60 hover:bg-[#22406d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+                  className="flex w-full items-center justify-center rounded-xl border border-[#4da3ff]/40 bg-black/70 px-4 py-3 text-sm font-semibold text-white shadow-[0_10px_35px_rgba(56,189,248,0.25)] transition hover:-translate-y-[1px] hover:border-[#6ac4ff]/60 hover:bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
                   onClick={() => setOpen(false)}
                 >
                   Entrar / Criar conta
@@ -166,11 +166,11 @@ function NavLink({
   isActive?: boolean;
 }) {
   return (
-    <motion.div variants={itemFadeUp}>
+    <motion.div variants={itemFadeUp} whileHover={{ y: -1 }} whileTap={{ scale: 0.98 }}>
       <Link
         href={href}
         className={cn(
-          "relative rounded-full px-4 py-2 transition hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60",
+          "relative rounded-full px-4 py-2 cursor-pointer transition hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black",
           isActive ? "text-white" : "text-white/70",
         )}
         aria-current={isActive ? "page" : undefined}

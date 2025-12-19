@@ -6,7 +6,7 @@ import { Input } from "../../components/ui/Input";
 export default function LoginPage() {
   return (
     <div className="relative flex min-h-[1090px] w-full items-center justify-center overflow-hidden bg-black px-4 py-24 sm:py-28">
-      <div className="pointer-events-none absolute inset-0 bg-[url('/bg_tecnology_login.svg')] bg-cover bg-center" />
+      
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/70" />
       <div className="relative z-10 mx-auto grid w-full max-w-6xl gap-8 lg:grid-cols-2">
         <GradientPanel />
@@ -20,10 +20,10 @@ function GradientPanel() {
   return (
     <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-[#0a4dcc] via-[#0a3fa3] to-black shadow-[0_25px_80px_rgba(0,0,0,0.45)]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.14),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(255,255,255,0.14),transparent_32%)] opacity-60" />
-      <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-black/75" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black/75" />
 
       <div className="relative flex min-h-[520px] flex-col items-center justify-center gap-6 px-6 py-10 text-center sm:px-10 lg:px-12">
-        <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm font-semibold text-white/80 shadow-soft">
+        <div className="flex items-center gap-2 rounded-full border border-white/10 bg-black/60 px-4 py-2 text-sm font-semibold text-white/80 shadow-soft">
           <span className="h-2 w-2 rounded-full bg-white" />
           AI Ateliux
         </div>
@@ -46,8 +46,8 @@ function GradientPanel() {
               type="button"
               className={`flex w-full items-center justify-between rounded-xl px-4 py-3 ${
                 step.active
-                  ? "bg-white text-black shadow-[0_12px_45px_rgba(0,0,0,0.35)]"
-                  : "border border-white/10 bg-white/5 text-white/80 hover:border-white/20 hover:bg-white/10"
+                  ? "bg-black text-white shadow-[0_12px_45px_rgba(0,0,0,0.35)]"
+                  : "border border-white/10 bg-black/40 text-white/80 hover:border-white/20 hover:bg-black/60"
               }`}
             >
               <span>{step.label}</span>

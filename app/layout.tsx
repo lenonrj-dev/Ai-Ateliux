@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "../components/layout/Navbar";
-import { Footer } from "../components/layout/Footer";
+import { PricingFooter } from "../components/layout/PricingFooter";
 import { PageTransition } from "../components/layout/PageTransition";
 
 const spaceGrotesk = Space_Grotesk({
@@ -27,12 +27,12 @@ export default function RootLayout({
       <body
         className={`${spaceGrotesk.variable} font-sans bg-black text-gray-100 antialiased`}
       >
-        <div className="relative min-h-screen overflow-hidden">
+        <div className="relative min-h-screen overflow-hidden bg-black">
           <Navbar />
           <PageTransition>
-            <main className="pb-10 pt-4 sm:pt-6 lg:pt-8">{children}</main>
+            <main className="pb-10 pt-4 sm:pt-6 lg:pt-8 bg-black">{children}</main>
           </PageTransition>
-          <Footer />
+          <PricingFooter />
         </div>
       </body>
     </html>

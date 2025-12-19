@@ -2,15 +2,24 @@
 
 import Image from "next/image";
 import { Play } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { cn } from "../../lib/utils";
 import { Button } from "../ui/Button";
 import { hoverLift, itemFadeUp, staggerContainer } from "../../lib/motion";
+import { useRef } from "react";
 
 export function GlobeHero() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const globeY = useTransform(scrollYProgress, [0, 1], [0, 80]);
+  const globeScale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
+
   return (
-    <section className="relative overflow-hidden bg-black pb-20 pt-24 text-white sm:pt-28">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_0%_10%,rgba(59,130,246,0.14),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(56,189,248,0.14),transparent_32%)]" />
+    <section ref={sectionRef} className="relative overflow-hidden bg-black pb-20 pt-24 text-white sm:pt-28">
       <div className="relative mx-auto flex min-h-[90vh] max-w-6xl flex-col items-center px-4">
         <motion.div
           variants={staggerContainer}
@@ -29,33 +38,39 @@ export function GlobeHero() {
             Conecte sua conta Meta, programe postagens, comentários e DMs em massa e deixe a IA da Ateliux responder leads, nutrir contatos e manter o perfil ativo 24/7.
           </motion.p>
           <motion.div variants={itemFadeUp} className="flex flex-wrap items-center justify-center gap-3">
-            <Button size="lg">Criar minha conta na AI Ateliux</Button>
+            <Button size="lg" href="/login">Criar minha conta na AI Ateliux</Button>
             <Button
               size="lg"
               variant="secondary"
               aria-label="Ver dashboard em ação"
-              className="border-white/15 bg-white/5 text-white"
+              className="border-white/15 bg-black/60 text-white"
+              href="/login"
             >
-              <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white">
-                <Play size={16} />
-              </span>
               Ver dashboard em ação
             </Button>
           </motion.div>
         </motion.div>
 
-        <Diagram />
+        <Diagram globeStyle={{ y: globeY, scale: globeScale }} scrollYProgress={scrollYProgress} />
       </div>
     </section>
   );
 }
 
-function Diagram() {
-  const cards = [
-    { title: "Fila de postagens", position: "top-left" as const },
-    { title: "Fluxos automáticos", position: "bottom-left" as const },
-    { title: "Analytics do Instagram", position: "top-right" as const },
-    { title: "Insights da IA", position: "bottom-right" as const },
+type CardPosition = "top-left" | "bottom-left" | "top-right" | "bottom-right" | "stacked";
+
+function Diagram({
+  globeStyle,
+  scrollYProgress,
+}: {
+  globeStyle: { y: any; scale: any };
+  scrollYProgress: ReturnType<typeof useScroll>["scrollYProgress"];
+}) {
+  const cards: { title: string; position: CardPosition }[] = [
+    { title: "Fila de postagens", position: "top-left" },
+    { title: "Fluxos automáticos", position: "bottom-left" },
+    { title: "Analytics do Instagram", position: "top-right" },
+    { title: "Insights da IA", position: "bottom-right" },
   ];
 
   return (
@@ -76,33 +91,17 @@ function Diagram() {
                 <stop offset="100%" stopColor="#5bb5ff" stopOpacity="0.12" />
               </linearGradient>
             </defs>
-            <path
-              d="M600 330 C520 320 430 305 320 260"
-              stroke="url(#lineGlow)"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-            <path
-              d="M600 360 C520 380 440 410 320 470"
-              stroke="url(#lineGlow)"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-            <path
-              d="M600 330 C690 320 780 305 880 260"
-              stroke="url(#lineGlow)"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-            <path
-              d="M600 360 C700 390 770 420 900 470"
-              stroke="url(#lineGlow)"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
+            <path d="M600 330 C520 320 430 305 320 260" stroke="url(#lineGlow)" strokeWidth="2" strokeLinecap="round" />
+            <path d="M600 360 C520 380 440 410 320 470" stroke="url(#lineGlow)" strokeWidth="2" strokeLinecap="round" />
+            <path d="M600 330 C690 320 780 305 880 260" stroke="url(#lineGlow)" strokeWidth="2" strokeLinecap="round" />
+            <path d="M600 360 C700 390 770 420 900 470" stroke="url(#lineGlow)" strokeWidth="2" strokeLinecap="round" />
           </svg>
 
-          <div className="absolute left-1/2 top-[19.5rem] -translate-x-1/2 -translate-y-1/2">
+          <motion.div
+            className="absolute left-1/2 top-[19.5rem] -translate-x-1/2 -translate-y-1/2"
+            style={globeStyle}
+            transition={{ type: "spring", stiffness: 120, damping: 20 }}
+          >
             <Image
               src="/globe.png"
               alt="Interface luminosa da AI Ateliux centralizando automações do Instagram"
@@ -111,26 +110,32 @@ function Diagram() {
               priority
               className="relative drop-shadow-[0_20px_60px_rgba(80,168,255,0.6)]"
             />
-          </div>
+          </motion.div>
 
           {cards.map((card) => (
-            <FeatureCard key={card.title} title={card.title} position={card.position} />
+            <FeatureCard key={card.title} title={card.title} position={card.position} progress={scrollYProgress} />
           ))}
         </div>
       </div>
 
       <div className="mt-10 grid w-full max-w-3xl grid-cols-1 gap-4 md:hidden">
         {cards.map((card) => (
-          <FeatureCard key={card.title} title={card.title} position="stacked" />
+          <FeatureCard key={card.title} title={card.title} position="stacked" progress={scrollYProgress} />
         ))}
       </div>
     </>
   );
 }
 
-type CardPosition = "top-left" | "bottom-left" | "top-right" | "bottom-right" | "stacked";
-
-function FeatureCard({ title, position }: { title: string; position: CardPosition }) {
+function FeatureCard({
+  title,
+  position,
+  progress,
+}: {
+  title: string;
+  position: CardPosition;
+  progress: ReturnType<typeof useScroll>["scrollYProgress"];
+}) {
   const base = "absolute w-[250px] rounded-[18px]";
 
   const placement = {
@@ -141,6 +146,12 @@ function FeatureCard({ title, position }: { title: string; position: CardPositio
     stacked: "static w-full",
   }[position];
 
+  const parallaxY = useTransform(
+    progress,
+    [0, 1],
+    position === "top-left" || position === "top-right" ? [0, 30] : [0, 50],
+  );
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 8 }}
@@ -148,6 +159,7 @@ function FeatureCard({ title, position }: { title: string; position: CardPositio
       viewport={{ once: true, margin: "-30px" }}
       transition={{ duration: 0.4 }}
       whileHover={hoverLift}
+      style={{ y: parallaxY }}
       className={cn(
         position === "stacked" ? "relative" : base,
         placement,

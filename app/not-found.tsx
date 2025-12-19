@@ -10,7 +10,7 @@ export default function NotFound() {
       <div className="relative mx-auto flex min-h-screen w-full max-w-6xl flex-col items-center px-5 pb-16 pt-24 text-center sm:pt-28">
         <div className="text-[22vw] font-black leading-none text-white/5 sm:text-[18vw]">404</div>
 
-        <div className="relative -mt-14 w-full max-w-3xl overflow-hidden rounded-3xl border border-white/5 bg-gradient-to-b from-white/5 via-black/70 to-black/90 p-8 shadow-[0_30px_120px_rgba(0,0,0,0.5)] sm:p-10">
+        <div className="relative -mt-14 w-full max-w-3xl overflow-hidden rounded-3xl border border-white/5 bg-black/80 p-8 shadow-[0_30px_120px_rgba(0,0,0,0.5)] sm:p-10">
           <h1 className="text-2xl font-semibold sm:text-3xl">Página não encontrada</h1>
           <p className="mt-3 text-sm text-white/70 sm:text-base">
             A rota que você acessou não existe na AI Ateliux. Conecte-se ao painel para automatizar postagens, comentários e DMs com IA.
@@ -18,21 +18,23 @@ export default function NotFound() {
           <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
               href="/"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:border-white/20 hover:bg-white/15 sm:w-auto"
+              prefetch={false}
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-black/70 px-5 py-3 text-sm font-semibold text-white transition duration-200 ease-out hover:border-white/20 hover:bg-black hover:brightness-110 active:scale-[0.98] active:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black sm:w-auto"
             >
               <ArrowLeft size={16} />
               Voltar para o início
             </Link>
             <Link
               href="/login"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-black/80 px-5 py-3 text-sm font-semibold text-black shadow-[0_15px_45px_rgba(59,130,246,0.35)] transition hover:-translate-y-[1px] hover:shadow-[0_18px_55px_rgba(100,180,255,0.45)] sm:w-auto"
+              prefetch={false}
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-black px-5 py-3 text-sm font-semibold text-white shadow-[0_15px_45px_rgba(59,130,246,0.35)] transition duration-200 ease-out hover:-translate-y-[1px] hover:shadow-[0_18px_55px_rgba(100,180,255,0.45)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-black sm:w-auto"
             >
               Entrar na AI Ateliux
             </Link>
           </div>
         </div>
 
-        <div className="relative mt-12 w-full max-w-5xl overflow-hidden rounded-3xl border border-white/5 bg-gradient-to-b from-[#0b1020]/80 via-[#05070d]/90 to-black/90 p-8 shadow-[0_25px_90px_rgba(0,0,0,0.5)] sm:p-10">
+        <div className="relative mt-12 w-full max-w-5xl overflow-hidden rounded-3xl border border-white/5 bg-black/80 p-8 shadow-[0_25px_90px_rgba(0,0,0,0.5)] sm:p-10">
           <div className="flex flex-col gap-4 text-left sm:flex-row sm:items-center sm:justify-between">
             <div className="space-y-2">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs font-semibold text-white">

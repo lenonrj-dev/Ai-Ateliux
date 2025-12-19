@@ -48,7 +48,7 @@ export function Features() {
 
 function PredictiveCard() {
   return (
-    <Card className="relative min-h-[320px] overflow-hidden bg-[#000]">
+    <Card className="relative min-h-[320px] overflow-hidden bg-black">
       <div className="relative h-[270px] overflow-hidden rounded-2xl">
         <div className="absolute inset-0 bg-[url('/analytics_wave_card_bg_blue.webp')] bg-contain bg-center bg-no-repeat opacity-90" />
         <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-black/80" />
@@ -60,10 +60,10 @@ function PredictiveCard() {
           </div>
 
           <div className="relative h-full">
-            <span className="absolute left-6 top-10 rounded-full bg-white/18 px-3 py-1 text-[11px] text-white/90">
+            <span className="absolute left-30 top-10 rounded-full bg-white/18 px-3 py-1 text-[11px] text-white/90">
               Melhor horário
             </span>
-            <span className="absolute bottom-10 left-5 rounded-full bg-white/12 px-3 py-1 text-[11px] text-white/75">
+            <span className="absolute bottom-10 mb-14 left-2 rounded-full bg-white/12 px-3 py-1 text-[11px] text-white/75">
               Trilha de Stories
             </span>
           </div>
@@ -89,7 +89,7 @@ function WorkflowCard() {
         {["Novo seguidor", "Responder DM", "Publicar post"].map((action, idx) => (
           <div
             key={action}
-            className="relative flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-4 text-sm text-white/85"
+            className="relative flex items-center justify-between rounded-xl border border-white/10 bg-black/40 px-4 py-4 text-sm text-white/85"
           >
             <span>{action}</span>
             <Workflow size={16} className="text-accent" aria-hidden />
@@ -115,12 +115,12 @@ function WorkflowCard() {
 function RealtimeCard() {
   return (
     <Card className="flex min-h-[420px] flex-col justify-between overflow-hidden p-6">
-      <div className="h-[203px] flex flex-col gap-4 rounded-2xl border border-white/10 bg-white/5 p-4">
+      <div className="h-[203px] flex flex-col gap-4 rounded-2xl border border-white/10 bg-black/50 p-4">
         <div className="flex items-center justify-between text-sm text-white/80">
           <span className="flex items-center gap-2 text-sm font-semibold text-white">
             <BarChart3 size={16} className="text-accent" /> Métricas em tempo real
           </span>
-          <span className="rounded-full bg-white/10 px-3 py-1 text-xs">Ao vivo</span>
+            <span className="rounded-full bg-black/40 px-3 py-1 text-xs">Ao vivo</span>
         </div>
         <div className="grid grid-cols-6 gap-2 rounded-xl border border-white/10 bg-black/40 p-3">
           {[38, 65, 52, 80, 60, 78].map((height, idx) => (

@@ -18,8 +18,8 @@ export function Badge({
       className={cn(
         "inline-flex h-12 items-center gap-1 rounded-xl border py-2 text-sm font-semibold text-current shadow-soft transition duration-200",
         variant === "solid"
-          ? "border-white/15 bg-white/10 shadow-glow"
-          : "border-white/10 bg-[#0b0d12] hover:border-white/20 hover:bg-white/5",
+          ? "border-white/15 bg-black shadow-glow"
+          : "border-white/10 bg-black hover:border-white/20 hover:bg-black/80",
         "backdrop-blur-md",
         className,
       )}
